@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	账号：<input type="text" name="user" id="user">
+	密码：<input type="text" name="psd" id="psd">
+	<input type="button" value="提交" onclick="qw()">
+</body>
+</html>
+<script src="/jquery.js"></script>
+<script>
+
+	function qw(){
+		var user=$("#user").val();
+		var psd=$("#psd").val();
+		$.ajax({
+			type:"post",
+			url:"http://www.cdd.com/xr/kdd/bdd",
+			data:{
+				user:user,
+				psd:psd
+			},
+			dataType:'json',
+			success:function(a){
+				console.log(a);
+				window.location.href="http://www.cdd.com/xr/kdd/cdd";
+			}
+		})
+	}
+
+
+</script>

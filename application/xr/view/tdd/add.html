@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		
+		<input type="button" value="签到"><span>进入以签到，获得积分{{score}}分</span>
+	
+		<table border="1px" cellpadding="0">
+			<th>总计签到</th>
+			<th>最近连续签到</th>
+			<th>获得积分</th>
+			<tr v-for="v in sign_list">
+				<td>{{v.c_days}}</td>
+				<td>{{v.total_scores}}</td>
+				<td>{{v.total_days}}</td>
+			</tr>
+
+		</table>
+
+	</div>
+
+	<script src="/jquery.js"></script>
+	<script src="/Vue.js"></script>
+	<script>
+
+		var  siguojin =new Vue({
+
+			el:"#app",
+			data:{
+				score:0,
+				sign_list:[]
+			},
+			created:function(){
+				this.list();
+			},
+			methods:{
+				list:function(){
+					var that=this;
+					$.ajax({
+						type:"post",
+						url:"http://www.sww.com/index.php/xr/tdd/bdd",
+						data:{static:1},
+						dataType:"json",
+						success:function(a){
+							// console.log(a);
+							that.sign_list=a;
+
+						}
+					})
+					
+				},
+				error:function(a){
+					console.log(a);
+				}
+			}
+
+
+		})
+
+
+	</script>
+</body>
+</html>

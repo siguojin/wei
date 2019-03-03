@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border="1px" cellspacing="0">
+		<th>id</th>
+		 <th>姓名</th>
+		 <th>密码</th>
+		 <th>头像</th>
+		 <th>操作</th>
+	{volist name="info" id="vo"}
+		            <tr>
+		                <td>{$vo.id}</td>
+		                <td>{$vo.user}</td>
+		                <td>{$vo.psd}</td>
+		                <td><img src="/Uploads/{$vo.files}" width="90px" height="90px"></td>
+		         	     <td><a href="delete?id={$vo.id}">删除</a>
+				<a href="update?id={$vo.id}">修改</a>
+		         	     </td>    
+		         	     
+		         
+		            </tr>
+            {/volist}
+{$list->render()}
+            </table>
+
+</body>
+</html>

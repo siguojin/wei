@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+	
+	
+
+<body><div id="app">
+
+	<table border="1px" cellspacing="0" id="table" >
+		<th>id</th>
+		<th>账号</th>
+		<th>密码</th>
+		<tr v-for='v in info'>
+			<td>{{v.id}}</td>
+			<td>{{v.user}}</td>
+			<td>{{v.psd}}</td>
+		</tr>
+	</table>
+	</div>
+	<script src="/jquery.js"></script>
+	<script src="/vue.js"></script>
+	<script>
+	var siguojin= new Vue({
+		el:'#app',
+		data:{
+		     info:{}
+		},
+		/*析构函数*/ 
+		created:function(){
+
+		     this.wei();
+		},
+		methods:{
+			wei:function(){
+				var that=this; 
+				$.ajax({
+					url:"http://www.cdd.com/bdd/bdd/bdd",
+					type:"get",
+					dataType:"json",
+					success:function(e){
+						console.log(e);
+						that.info=e;
+					}
+				})
+			}
+		}
+	})
+	</script>
+
+	
+</body>
+</html>

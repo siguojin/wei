@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div ul{
+		list-style: none;
+
+	}
+	div ul li{
+		float:left; 
+		width: 30px;
+	}
+	</style>
+</head>
+<body>
+	<center>
+	<table border="1px" cellspacing="0">
+		<th>id</th>
+		<th>姓名</th>
+		<th>类别</th>
+		<th>成绩</th>
+		<th>操作</th>
+	  {volist name="re" id="vo"}
+            <tr>
+                <td>{$vo.id}</td>
+                <td>{$vo.users}</td>
+                <td>{$vo.lb}</td>
+                <td>{$vo.cj}</td>
+                <td><img src="/uploads/{$vo.files}" width="20px" height="20px"></td>
+                <td><a href="delete?id={$vo.id}">删除</a>||<a href="update?id={$vo.id}">修改</a></td>
+            </tr>
+            {/volist}
+	</table>
+
+	</center>
+
+	<div>{$re->render()}</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+
+	<table>
+
+		<tr>
+			<td>账号</td>
+			<td><input type="text" name="user" id="user"></td>
+		</tr>
+
+		<tr>
+			<td>密码</td>
+			<td><input type="text" name="psd" id="psd"></td>
+		</tr>
+
+		<tr>
+			<td>手机号</td>
+			<td><input type="text" name="phon" id="phon"></td>
+		</tr>
+
+		<tr>
+			<td><input type="button" value="提交" onclick="qw()"></td>
+		</tr>
+
+	</table>
+	
+</body>
+</html>
+<script src="/jquery.js"></script>
+<script>
+	function qw(){
+		var user=$("#user").val();
+		var psd=$("#psd").val();
+		var phon=$("#phon").val();
+		$.ajax({
+			type:"post",
+			url:"http://www.cdd.com/xr/mdd/cdd",
+			data:{
+				user:user,
+				psd:psd,
+				phon:phon
+			},
+			dataType:"json",
+			success:function(res){
+				console.log(res);
+				if(res.code==1){
+					alert("登陆成功");
+					window.location.href="http://www.cdd.com/xr/mdd/bdd";
+				}else{
+					alert("登录失败");
+				}
+			}
+		})
+	}
+
+</script>

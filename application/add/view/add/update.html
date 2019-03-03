@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form action="{:url('upload')}" method="post">
+	<input type="hidden" name="id" value="{$info.id}">
+	<input type="text" name="user" value="{$info.user}">
+	<input type="text" name="psd" value="{$info.psd}">
+	<button>修改</button>
+	</form>
+</body>
+</html>

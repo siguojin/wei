@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table id="app" border="1px">
+		<tr v-for="v in info">
+			<td><input type="checkbox" name="cd" v-bind:value="v.id">{{v.id}}</td>
+			<td>{{v.user}}</td>
+			<td>{{v.psd}}</td>
+			<td></td>
+
+		</tr>
+
+	</table>
+	<input type="button" value="选中删除" onclick="del()">
+	<script src="/vue.js"></script>
+	<script src="/jquery.js"></script>
+	<script>
+
+	var siguojin=new Vue({
+		el:"#app",
+		data:{
+			info:{}
+		},
+		created:function(){
+			this.wei();
+		},
+		methods:{
+			wei:function(){
+				var that=this;
+				$.ajax({
+					type:"get",
+					url:"http://www.cdd.com/xr/kdd/edd",
+					dataType:"json",
+					success:function(a){
+						console.log(a);
+						that.info=a;
+					}
+				})
+			}
+		}
+	})
+
+	function del(){
+		var id=document.getElementsByName('cd');
+		var length=id.length;
+		var str="";
+		for(var i=0;i<id.length;i++){
+			if(id[i].checked){
+				str+=id[i].value+',';
+			}
+		}
+		$.ajax({
+			type:"post",
+			data:{
+				id:str
+			},
+			url:"http://www.cdd.com/xr/kdd/del",
+			success:function(a){
+				alert(a);
+			}
+		})
+	}
+
+
+	</script>
+</body>
+</html>

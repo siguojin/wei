@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<form action="{:url('Dbdata/update')}" method="post">
+<table>
+	<input type="hidden" name="id" value="{$info.id}">
+	姓名：<input type="text" name="users" value="{$info.users}"><br>
+	类别：<input type="text" name="lb" value="{$info.lb}"><br>
+	成绩：<input type="text" name="cj" value="{$info.cj}"><br>
+	<button>修改</button>
+
+
+</table>
+
+</form>
+	
+</body>
+</html>

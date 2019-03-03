@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border="1px" cellspacing="0">
+		<?php foreach ($re as $k => $v): ?>
+			<tr>
+			<td>{$v.id}</td>
+			<td>{$v.users}</td>
+			<td>{$v.lb}</td>
+			<td>{$v.cj}</td>
+			<td><img src="/uploads/{$v.files}" width="60px" height="60px"></td>
+			<td><a href="delete?id={$v.id}">删除</a>||<a href="update?id={$v.id}">修改</a></td>
+			</tr>	
+		<?php endforeach ?>
+	</table>
+	<div>{$re->render()}</div>
+
+</body>
+</html>

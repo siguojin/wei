@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<form action="{:url('bdd')}" method="post" enctype="multipart/form-data">
+		
+		<table>
+			
+			<tr>
+				<td>姓名</td>
+				<td><input type="text" name="user"></td>
+			</tr>
+			
+			<tr>
+				<td>密码</td>
+				<td><input type="text" name="psd"></td>
+
+			</tr>
+
+			<tr>
+				<td>头像</td>
+				<td><input type="file" name="files"></td>
+			</tr>
+
+			<tr>
+				<td><input type="submit" ></td>
+			</tr>
+
+		</table>
+
+
+	</form>
+	
+</body>
+</html>

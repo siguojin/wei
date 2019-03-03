@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<table border="1px" id="app">
+		<th>编号</th>
+		<th>商品名称</th>
+		<th>货号</th>
+		<tr v-for="v in info">
+			<td><input type="checkbox" name="cd" v-bind:value="v.id">{{v.id}}</td>
+			<td>{{v.user}}</td>
+			<td>{{v.huo}}</td>
+	
+		</tr>
+	</table>
+	<input type="button" onclick="qw()" value="选中删除">
+	<script src="/jquery.js"></script>
+	<script src="/vue.js"></script>
+	<script>
+	var siguojin =new Vue({
+		el:"#app",
+		data:{
+			info:{}
+		},
+		created:function(){
+			this.wei();
+		},
+		methods:{
+			wei:function(){
+				var that=this;
+				$.ajax({
+					type:"get",
+					dataType:"json",
+					url:"http://www.cdd.com/xr/add/bdd",
+					success:function(a){
+						console.log(a);
+						that.info=a;
+					}
+				})
+			}
+		}
+	})
+
+	function qw(){
+		var id=document.getElementsByName('cd');
+		var length=id.length;
+		var str="";
+		for(var i=0;i<id.length;i++){
+			if(id[i].checked){
+				str+=id[i].value+',';
+			}
+		}
+		$.ajax({
+			type:"post",
+			data:{
+				id:str
+			},
+			url:"http://www.cdd.com/xr/add/del",
+			success:function(a){
+				if(a==1){
+					alert("删除成功");
+					window.location.href="http://www.cdd.com/xr/add/add";
+				}else{
+					alert("删除失败");
+				}
+			}
+		})
+	}
+
+
+	</script>
+</body>
+</html>

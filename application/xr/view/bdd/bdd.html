@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<table id="app" border="1px">
+			<th>id</th>
+			<th>账号</th>
+			<th>密码</th>
+			<th>操作</th>
+			<tr v-for="v in info">
+				<td><input type="checkbox" name="cd" v-bind:value="v.id">{{v.id}}</td>
+				<td>{{v.user}}</td>
+				<td>{{v.psd}}</td>
+				<td><a  v-on:click="qw(v.id)"  v-bind:value="v.id" >删除</a></td>
+			</tr>
+		</table>
+
+	<input type="button" onclick="add()" value="选中删除">
+	</div>
+	<script src="/jquery.js"></script>
+	<script src="/vue.js"></script>
+	<script>
+		var siguojin= new Vue({
+			el:"#app",
+			data:{
+				info:{}
+			},
+			created:function(){
+				this.wei();
+			},
+			methods:{
+				wei:function(){
+					var that=this;
+					$.ajax({
+						url:"http://www.cdd.com/xr/bdd/edd",
+						dataType:'json',
+						success:function(a){
+							console.log(a);
+							that.info=a;
+						}
+					})
+				}
+			}
+
+		})
+
+		function qw(id){
+			$.ajax({
+				type:"post",
+				url:"http://www.cdd.com/xr/bdd/clcl",
+				data:{
+					id:id
+				},
+				dataType:'json',
+				success:function(a){
+					console.log(a);
+					window.location.href="http://www.cdd.com/xr/bdd/bdd";
+				}
+
+			})
+		}
+
+		function add(){
+			var id=document.getElementsByName('cd');
+			var length=id.length;
+			var str="";
+			for(var i=0;i<id.length;i++){
+				if(id[i].checked){
+					str+=id[i].value+',';
+				}
+			}
+			$.ajax({
+				type:"post",
+				url:"http://www.cdd.com/xr/bdd/wd",
+				data:{
+					id:str
+				},
+				success:function(a){
+					if(a==1){
+						alert('删除成功');
+						window.location.href="http://www.cdd.com/xr/bdd/bdd";
+					}
+				}
+			})
+		}
+
+	</script>
+</body>
+</html>

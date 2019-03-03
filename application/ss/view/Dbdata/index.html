@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无限极分类展示</title>
+</head>
+<body>
+	<div>
+		<label >商品的无限极分类展示</label>
+		<select name="parent_id" >
+			
+			<option value="0">顶级分类</option>
+
+
+			{volist name='re' id='val'}
+
+
+				<option value="{val.category_id}" 
+					{if condition="isset($val.parent_id) && $val.parent_id == $val.category_id"}
+						selected
+					{/if}
+				>
+					{:str_repeat('&nbsp;',$val.deep*3)}{$val.title}
+				</option>
+
+
+			{/volist}
+
+
+
+
+		</select>
+
+
+	</div>
+</body>
+</html>

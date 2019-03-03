@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>
+		<table id="app">
+			<tr v-for="v in info">
+				<td>{{v.id}}</td>
+				<td>{{v.user}}</td>
+				<td>{{v.psd}}</td>
+				<td>{{v.cd}}</td>
+			</tr>
+		</table>
+	</div>
+	<script src="/jquery.js"></script>
+	<script src="/vue.js"></script> 
+	<script>
+	var siguojin=new Vue({
+		el:'#app',
+		data:{
+			info:{}
+		},
+		created:function(){
+			this.wei();
+		},
+		methods:{
+			wei:function(){
+				that=this,
+				$.ajax({
+					type:"get",
+					dataType:r'json',
+					url:"http://www.cdd.com/ac/add/bdd",
+					success:function(a){
+						console.log(a);
+						that.info=a;
+					}
+				})
+			}
+		}
+	})
+
+	</script>
+</body>
+</html>
